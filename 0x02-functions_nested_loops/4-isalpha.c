@@ -1,26 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "main.h"
 
 /**
- * main - Entry point
+ * _isalpha - check if the given character is lower case.
+ * @c: character to test.
  *
- * Return: Always 0 (Success)
+ * Return: 1 (True) else 0 (False)
  */
-
-int main(void)
+int _isalpha(int c)
 {
-	char low, e, q;
-
-	e = 'e';
-	q = 'q';
-
-	for (low = 'a'; low <= 'z'; low++)
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 	{
-		if (low != e && low != q)
-			putchar(low);
+		return (1);
 	}
-	putchar('\n');
-
 	return (0);
 }
+
