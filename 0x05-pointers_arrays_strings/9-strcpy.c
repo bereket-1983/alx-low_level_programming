@@ -1,19 +1,29 @@
 #include "main.h"
-/**
- * _strcpy - a function that copies the string pointed to by src,
- * including the terminating null byte (\0),
- * to the buffer pointed to by dest.
- *
- * @dest: A pointer to destination of string
- * @src: A pointer to source string to copy from
- *
- * Return: pointer to dest
- */
-char *_strcpy(char *dest, char *src)
-{
-	char *aux = dest;
 
-	while (*src)
-		*dest++ = *src++;
-	return (aux);
+/**
+ * _strncat - this fuction will concatenates two strings
+ * @dest: the string that will modified.
+ * @src: the string that ill be concatenated to @dest.
+ * @n: copy up to poistion 'n'
+ * Return: a pointer to @dest
+ */
+char *_strncat(char *dest, char *src, int n)
+{
+	int index_01 = 0;
+	int index_02 = 0;
+
+	while (dest[index_01] != '\0')
+	{
+		index_01++;
+	}
+
+	while (index_02 < n && src[index_02] != '\0')
+	{
+		dest[index_01 + index_02] = src[index_02];
+		index_02++;
+
+	}
+	dest[index_01 + index_02] = '\0';
+
+	return (dest);
 }
