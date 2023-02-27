@@ -1,20 +1,21 @@
 #include "main.h"
+
 /**
- * print_rev - minic the stdio version of puts
- * @s: the value to process to the stdout in reverse.
+ * reverse_array - desciption
+ * @a: the array to reverse
+ * @n: number of elements to reverse.
  */
-void print_rev(char *s)
+void reverse_array(int *a, int n)
 {
-	int count;
+	int temp;
+	int i;
 
-	while (*(s + count) != '\0')
+	n--;
+	for (i = 0;  i < n ; i++)
 	{
-		count++;
+		temp = a[i];
+		a[i] = a[n];
+		a[n] = temp;
+		n--;
 	}
-
-	while (count--)
-	{
-		_putchar(*(s + (count)));
-	}
-	_putchar('\n');
 }
