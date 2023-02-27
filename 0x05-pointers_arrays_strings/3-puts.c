@@ -1,15 +1,14 @@
-#include "main.h"
-
+#include "holberton.h"
 /**
- * _strlen -  a function that returns the length of a string.
- * @s: An input string
- * Return: Nothing
+ * _puts - minic the stdio version of puts
+ * @str: the value to process to the stdout.
  */
-int _strlen(char *s)
+void _puts(char *str)
 {
-	int len = 0;
-
-	while (s[len] != '\0')
-		len++;
-	return (len);
+	while (*str > 0)
+	{
+		_putchar(*str);
+		str++;
+	}
+	_putchar('\n');
 }
