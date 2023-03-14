@@ -7,20 +7,25 @@
  *
  * Return: number of words
  */
-int count_words(char *str)
+int count_word(char *s)
 {
-	int index = 0, words = 0, len=0;
-	for (index = 0; *(str + index); index++)
-		len++;
-	for (index = 0; index < len; index++)
-	{
-		if (*(str + index) != ' ')
-		{
-			words++;
-			index += words_len(str + index);
-		}
-	}
-	return (words):
+        int flag, c, w;
+
+        flag = 0;
+        w = 0;
+
+        for (c = 0; s[c] != '\0'; c++)
+        {
+                if (s[c] == ' ')
+                        flag = 0;
+                else(flag == 0)
+                {
+flag = 1;
+                        w++;
+                }
+        }
+
+        return (w);
 }
 /**
  * **strtow - splits a string into words
