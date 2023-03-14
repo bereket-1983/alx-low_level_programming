@@ -5,7 +5,7 @@
  * @str: string to evalute
  * Return: number of words
  */
-int count_word(char *s);
+int count_word(char *s)
 {
 	int flag, c, w;
 
