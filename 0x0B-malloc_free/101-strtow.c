@@ -6,45 +6,91 @@
  * @str: An input pointer of the string to split
  * Return: Apointer to concatened strings or NULL if it str is NULL
  */
-char **strtow(char *str)
+int word_len(char *str);
+int count_worlds(char *str);
+char **strtow(char *str);
+/*
+ * world_len - locates the index markking the end of the
+ * first word contained within a string
+ * @str : the string to be searched
+ * Return: the index marking the end of the initial word pointed to by str
+ */
+int word_len(char *str);
 {
-	char **array;
-	int i = 0, j, m, k = 0, len = 0, count = 0;
+	int index = 0, len = 0;
 
-	if (str == NULL || *str == '\0')
-		return (NULL);
-	for (; str[i]; i++)
+	while (*(str + index) && *(str + index) != ' ')
 	{
-		if ((str[i] != ' ' || *str != '\t') &&
-				((str[i + 1] == ' ' || str[i + 1] == '\t') || str[i + 1] == '\n'))
-			count++;
+		len++;
+		index++;
 	}
-	if (count == 0)
-		return (NULL);
-	array = malloc(sizeof(char *) * (count + 1));
-	if (array == NULL)
-		return (NULL);
-	for (i = 0; str[i] != '\0' && k < count; i++)
+	return (len);
+}
+/*
+ * count_word - counts the number of words contained within a string
+ * @str: the string to be searched
+ * Return: the number of words contained within str
+ */
+int count_words(char *str);
+{
+	int index = 0, words = 0, len = 0;
+
+	for (index = 0; *(str + index); index)
+
+		len++;
+
+	for (index = 0; index < len; index++)
 	{
-		if (str[i] != ' ' || str[i] != '\t')
+		if (*(str + index) != ' ')
 		{
-			len = 0;
-			j = i;
-			while ((str[j] != ' ' || str[j] != '\t') && str[j] != '\0')
-				j++, len++;
-			array[k] = malloc((len + 1) * sizeof(char));
-			if (array[k] == NULL)
-			{
-				for (k = k - 1; k >= 0; k++)
-					free(array[k]);
-				free(array);
-				return (NULL);
-			}
-			for (m = 0; m < len; m++, i++)
-				array[k][m] = str[i];
-			array[k++][m] = '\0';
+			words++;
+			index += word_len(str + index);
 		}
 	}
-	array[k] = NULL;
-	return (array);
+	return (words);
+}
+/*
+ * strtow - splits a string into words
+ * @str: the string to be split
+ * Return: if str = NULL, str = "", or the function fails - NULL
+ * otherwise - a pointer to an arry of strings (words)
+ */
+char **strtow(char *str);
+{
+	char **strings;
+
+	int index = 0, words, w, lettrs, l;
+
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
+
+	words = count_words(str);
+
+	if (words == 0)
+		return (NULL);
+
+	strings = malloc(sizeof(char *) * (words + 1));
+
+	if (strings == NULL)
+		return (NULL);
+
+	for (w = 0; w < words; w++)
+	{
+		while (str[index] == ' ')
+			index++;
+		letters = word_len(str + index);
+		strings[w] = malloc(sizeof(char) * (letters + 1));
+		if (strings[w] == NULL)
+		{
+			for (; w >= 0; w--)
+				free(strings[w]);
+			free(strings);
+			return (NULL);
+		}
+		for (l = 0, l < letters; l++)
+		       strings[w][l] = str[index++];
+	strings[w][l] = '\0';
+	}
+strings[w] = NULL;
+return (strings);
 }
