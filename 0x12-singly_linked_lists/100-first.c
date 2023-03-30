@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "lists.h"
 
 /**
  * print_after_main - before the main function is executed.
