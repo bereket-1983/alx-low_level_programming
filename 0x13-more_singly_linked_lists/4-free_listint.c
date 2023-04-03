@@ -2,23 +2,21 @@
 
 /**
  * free_listint - a function free and node list
- * @head: struct value
+ * @head: a pointer to struct
+ *
+ * Return: nothing
  *
  */
 
 void free_listint(listint_t *head)
 {
-	if (head == NULL)
-	{
-		return;
-	}
+	listint_t *temp;
 
-	while (head != NULL)
+	while (head)
 	{
-		listint_t *tmp;
-
-		tmp = head;
-		free(tmp);
+		temp = head;
 		head = head->next;
+		free(temp);
 	}
+	free(head);
 }
